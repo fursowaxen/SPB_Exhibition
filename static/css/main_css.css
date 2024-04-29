@@ -7,7 +7,6 @@ body {
     font-family: "Kanit";
     font-weight: 300;
     font-size: 16px;
-    color: #e21818;
     margin-top: 20px;
 }
 
@@ -19,7 +18,6 @@ h1, h2, h3, h4, h5, h6 {
     margin: 20px;
     
 }
-
 
 .centered {
     text-align: center;
@@ -85,6 +83,7 @@ p {
     width: 90%;
     margin-top: 10px;
 }
+
 .description {
     color: #6063e2;
     font-size: 20px;
@@ -94,7 +93,7 @@ p {
 }
 
 .exh:hover, .exh:focus {
-    border: 1mm ridge#a412e7;
+    border: 1mm ridge #a412e7;
 }
 
 img:hover, img:focus {
@@ -130,4 +129,11 @@ img:hover, img:focus {
     float: left;
     font-size: small;
     color: #3c00ff;
+}
+
+#map {
+    width: 400px;
+    height: 250px;
+    float: right;
+    margin-right: 10px;
 }

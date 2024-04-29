@@ -1,20 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template, redirect, url_for, request
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
-
-
-class Users(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), unique=True)
-    password = db.Column(db.String(500), nullable=False)
-
-    def __repr__(self):
-        return f"<users {self.id}>"
+from flask import render_template, redirect, url_for, request
+from users_class import Users, app, db
 
 
 @app.route("/painting")
@@ -47,11 +32,12 @@ def index():
     if request.method == "POST":
         name = request.form["name"]
         psw = request.form["psw"]
-
         login = Users.query.filter_by(name=name, password=psw).first()
+
         if login is not None:
             return redirect(url_for("main_file"))
-    print('Нет такого аккаунта')
+        print('Нет такого аккаунта')
+
     return render_template("login.html")
 
 
@@ -61,15 +47,16 @@ def register():
         try:
             name = request.form['name']
             psw = request.form['psw']
-
             reg = Users(name=name, password=psw)
+
             db.session.add(reg)
             db.session.commit()
             print('Успешная регистрация')
             return redirect(url_for("main_file"))
+
         except:
             db.session.rollback()
-            print('Уже есть такой аккаунт')
+            print('Ошибка регистрации (скорее всего, такой аккаунт уже существует)')
 
     return render_template("registration.html", title="Регистрация")
 
