@@ -18,22 +18,22 @@ class Users(db.Model):
 
 
 @app.route("/painting")
-def p():
+def paint():
     return render_template("painting.html")
 
 
 @app.route("/historic")
-def h():
+def hist():
     return render_template("historic.html")
 
 
 @app.route("/science")
-def s():
+def scien():
     return render_template("science.html")
 
 
 @app.route("/art")
-def a():
+def art():
     return render_template("art.html")
 
 
